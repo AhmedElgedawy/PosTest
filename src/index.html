@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+      <!-- DataTables  Items-page-->
+  <link rel="stylesheet" href="assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <script src="assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <!-- AdminLTE App  Items-Page-->
+<script src="assets/dist/js/adminlte.min.js"></script>
+
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
@@ -51,6 +58,10 @@
 <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- DataTables  Items-Page-->
+<script src="assets/plugins/datatables/jquery.dataTables.js"></script>
+
 <!-- ChartJS -->
 <script src="assets/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -75,5 +86,20 @@
 <script src="assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dist/js/demo.js"></script>
+
+<!-- page script  Items-Page-->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 </body>
 </html>

@@ -212,15 +212,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a  routerLink="/Admin/items" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>All Items - عرض الأصناف</p>
+                  <p  routerLink="/Admin/items"  (click)="NavigateToItemsPage()">All Items - عرض الأصناف</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/boxed.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
+                  <p>   Add Items-اضافه الأصناف</p>
                 </a>
               </li>
               <li class="nav-item">
