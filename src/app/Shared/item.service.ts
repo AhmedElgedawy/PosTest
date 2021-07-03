@@ -30,8 +30,10 @@ export class ItemService {
 
   GetAllItems():Observable<Array<IItems>>
   {
-     // alert("servise data ");
-      return this.http.get<Array<IItems>>(ApiConfig.ServerUrl+ApiConfig.ItemApiEndPoint+"/PopularItems");
+     
+      return this.http.get<Array<IItems>>(ApiConfig.ServerUrl+ApiConfig.ItemApiEndPoint+"/GetAllItems");
+
+    // return this.http.get<Array<IItems>>("http://salestwo-001-site1.btempurl.com/Items/GetAllItems");
 
   }
 
