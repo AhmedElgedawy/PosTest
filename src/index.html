@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="loading"  data-textdirection="rtl>
 <head>
   <meta charset="utf-8">
   <title>PosRes</title>
@@ -14,6 +14,12 @@
 
   <!-- BEGIN: Vendor CSS-->
   <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/vendors-rtl.min.css">
+
+<!--     Items-page -->
+  <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/file-uploaders/dropzone.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/tables/datatable/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
+
   <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/charts/apexcharts.css">
   <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/extensions/tether-theme-arrows.css">
   <link rel="stylesheet" type="text/css" href="assets/app-assets/vendors/css/extensions/tether.min.css">
@@ -31,6 +37,12 @@
   <!-- BEGIN: Page CSS-->
   <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/core/menu/menu-types/vertical-menu.css">
   <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/core/colors/palette-gradient.css">
+
+  <!-- item-page -->
+  <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/plugins/file-uploaders/dropzone.css">
+  <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/pages/data-list-view.css">
+
+
   <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/pages/dashboard-analytics.css">
   <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/pages/card-analytics.css">
   <link rel="stylesheet" type="text/css" href="assets/app-assets/css-rtl/plugins/tour/tour.css">
@@ -49,25 +61,23 @@
 
 
 
-
-
-
   <app-root></app-root>
-
-
-
-
-
-
-  
-
-
-
-
 
   <!-- BEGIN: Vendor JS-->
   <script src="assets/app-assets/vendors/js/vendors.min.js"></script>
   <!-- BEGIN Vendor JS-->
+
+  <!--    item-page -->
+  <script src="assets/app-assets/vendors/js/extensions/dropzone.min.js"></script>
+
+ <!-- item-page -->
+  <script src="assets/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+  <script src="assets/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+  <script src="assets/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
+  <script src="assets/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
+  <script src="assets/app-assets/vendors/js/tables/datatable/dataTables.select.min.js"></script>
+  <script src="assets/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
+
 
   <!-- BEGIN: Page Vendor JS-->
   <script src="assets/app-assets/vendors/js/charts/apexcharts.min.js"></script>
@@ -83,6 +93,10 @@
 
   <!-- BEGIN: Page JS-->
   <script src="assets/app-assets/js/scripts/pages/dashboard-analytics.js"></script>
+
+
+  <!--  ده خاص بالفلتر اللى فيه الصفحات  -->
+  <!-- <script src="assets/app-assets/js/scripts/ui/data-list-view.js"></script> -->
   <!-- END: Page JS-->
 
 

@@ -30,11 +30,25 @@ export class ItemService {
 
   GetAllItems():Observable<Array<IItems>>
   {
-     
+
       return this.http.get<Array<IItems>>(ApiConfig.ServerUrl+ApiConfig.ItemApiEndPoint+"/GetAllItems");
 
     // return this.http.get<Array<IItems>>("http://salestwo-001-site1.btempurl.com/Items/GetAllItems");
 
+  }
+
+
+  GetItemById(id:number) : Observable<IItems>
+  {
+      // return this.http.get<IItems>(ApiConfig.ServerUrl+ApiConfig.ItemApiEndPoint+"/GetItemById"+"/"+id);
+      // {{LocalUrl}}/Items/GetItemById?id=1045
+
+
+      // return this.http.get<IItems>("http://salestwo-001-site1.btempurl.com/Items/GetItemById/"+id);
+
+
+
+      return this.http.get<IItems>("http://salestwo-001-site1.btempurl.com/Items/GetItemById?id="+id);
   }
 
 }

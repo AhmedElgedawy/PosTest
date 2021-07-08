@@ -18,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
 
 import {   AppComponent,  HomePageComponent ,  HeaderComponent ,
   FooterComponent,  ItemsPageComponent ,ItemDetailsPageComponent   ,ItemService     } from './index';
+import { AddItemPageComponent } from './add-item-page/add-item-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {   AppComponent,  HomePageComponent ,  HeaderComponent ,
     HeaderComponent,
     FooterComponent,
     ItemsPageComponent,
-    ItemDetailsPageComponent
+    ItemDetailsPageComponent,
+    AddItemPageComponent
   ],
   imports: [
     BrowserModule,
