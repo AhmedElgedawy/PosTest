@@ -9,6 +9,7 @@
 
 //Check to see if the window is top if not then display button
 $(document).ready(function(){
+  
     $(window).scroll(function(){
         if ($(this).scrollTop() > 400) {
             $('.scroll-top').fadeIn();

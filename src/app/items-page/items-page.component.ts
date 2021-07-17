@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import  {IItems}  from '../Shared/Models';
+import  {IItems, IUnits}  from '../Shared/Models';
 import {ItemService} from '../Shared/item.service' ;
 import { ToastrService } from 'ngx-toastr';
+import { NgForm} from "@angular/forms"
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -10,17 +12,31 @@ declare var $: any;
   styleUrls: ['./items-page.component.css']
 })
 export class ItemsPageComponent implements OnInit {
+  id:string | null="";
+  myitems:IItems={nameAr:"", nameEn:"" , createdBy:"" , unitId:0,  itemId:0};
+  formSate:number=1;
 
-  constructor(private  itemservice:ItemService ,private toastr: ToastrService) { }
+  units:Array<IUnits>=[];
+  constructor(private  itemservice:ItemService
+    , private route:Router ,private toastr: ToastrService) { }
 
      items:Array<IItems>=[];
+
 
      items2:Array<any>=[1,2,3,4,5,6,7];
 
   ngOnInit(): void {
 
 
+    this.itemservice.GetAllUnits().subscribe((data)=>
+    {
+         this.units =  data ;
 
+         console.log(  data );
+
+
+
+       } , error=> { console.log( error) ;  }   );
 
 
     // let itemservice:ItemService = new ItemService();
@@ -30,6 +46,7 @@ export class ItemsPageComponent implements OnInit {
 
     $(document).ready(function()
     {
+
 
       // let body1 = <HTMLDivElement> document.body;
       // let script1 = document.createElement('script');
@@ -101,33 +118,83 @@ export class ItemsPageComponent implements OnInit {
     });
 
           this.items =  data ;
+          this.itemservice.myItems=data;
           console.log(  data );
 
           console.log(  this.items[12].unit.unitNameAr );
 
-          alert();
-
-
-
-
         } , error=> { console.log( error) ;  }   );
-
-
 
 
   }
 
 
+
+
+  SaveDate(myform:NgForm): void {
+
+    let item:IItems = {
+  nameAr:myform.value.nameAr,
+  nameEn:myform.value.nameEn,
+  createdBy:myform.value.createdBy,
+  unitId:myform.value.unitId,
+  image:myform.value.Photo     }
+
+
+this.itemservice.AddItem(item).subscribe(
+  (data: IItems) => {
+    // log the employee object after the post is completed
+    console.log(data);
+     myform.reset();
+
+    this.route.navigate(["/Admin/items"]);
+  },
+  (error: any) => { console.log(error); }
+);
+}
+
+
+OnEdit(id:number|any)
+{
+   this.myitems=this.itemservice.GetById(id);
+   this.formSate=2;
+}
+
+OnClear()
+{
+  this.myitems={
+    itemId:0,
+    nameAr:"",
+    nameEn:"",
+    createdBy:"",
+    unitId:0,
+
+  }
+  this.formSate=1;
+}
+
+  OnDelete(id:number|any)
+  {
+
+
+  
+ 
+    this.itemservice.DeleteItemById(id).subscribe(data => {
+      console.log(data);
+      this.showSuccess(  ' Message  ', 'Item Deleted successfully' );
+
+    });
+  }
 
 
 
 //   Individual Options
 // Passed to ToastrService.success/error/warning/info/show()
 
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!' );
-  }
-
+ 
+showSuccess(title:any , message :any) {
+  this.toastr.success(title, message);
+}
   showSuccessWithTime() {
     this.toastr.success('Hello world!', 'Toastr fun!' , {
       timeOut: 1000,

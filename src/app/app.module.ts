@@ -14,11 +14,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ToastrModule } from 'ngx-toastr';
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule ,ReactiveFormsModule } from "@angular/forms"
 
 
 import {   AppComponent,  HomePageComponent ,  HeaderComponent ,
   FooterComponent,  ItemsPageComponent ,ItemDetailsPageComponent   ,ItemService     } from './index';
 import { AddItemPageComponent } from './add-item-page/add-item-page.component';
+import { HomeWebPageComponent } from './WebSite/home-web-page/home-web-page.component';
+import { WebHeaderComponent } from './WebSite/web-header/web-header.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +31,17 @@ import { AddItemPageComponent } from './add-item-page/add-item-page.component';
     FooterComponent,
     ItemsPageComponent,
     ItemDetailsPageComponent,
-    AddItemPageComponent
+    AddItemPageComponent,
+    HomeWebPageComponent,
+    WebHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ToastrModule.forRoot() ,
-    HttpClientModule
+    HttpClientModule ,
+    FormsModule ,
+    ReactiveFormsModule
   ],
   providers: [
     ItemService

@@ -33,6 +33,7 @@
     last: 'Last',
     startPage: 2,
     onPageClick: function (event, page) {
+     
       $('#firstLast1-content').text('You are on Page ' + page);
       $(".pagination").find('li').addClass('page-item');
       $(".pagination").find('a').addClass("page-link");

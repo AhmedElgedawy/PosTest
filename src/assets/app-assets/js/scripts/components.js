@@ -31,6 +31,7 @@
   // For Carousel With Enabled Keyboard Controls
   $(document).on("keyup", function (e) {
     if (e.which == 39) {
+      
       $('.carousel[data-keyboard="true"]').carousel('next');
     } else if (e.which == 37) {
       $('.carousel[data-keyboard="true"]').carousel('prev');

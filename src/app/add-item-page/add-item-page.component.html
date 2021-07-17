@@ -32,6 +32,14 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
             <div class="content-body">
                 <!-- Basic Horizontal form layout section start -->
                 <section id="basic-horizontal-layouts">
@@ -39,77 +47,201 @@
                         <div class="col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Horizontal Form</h4>
+                                    <h4 class="card-title">اضافه الأصناف</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form form-horizontal">
-                                            <div class="form-body">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group row">
-                                                            <div class="col-md-4">
-                                                                <span>First Name</span>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name">
-                                                            </div>
-                                                        </div>
+                                <!-- test form  -->
+                                     <form  class="form form-horizontal"  #AddingItems2="ngForm" (ngSubmit) ="onUpload(AddingItems2)">
+                                      <div class="form-body">
+                                        <div class="row">
+
+
+                                              <!-- nameAr -->
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Item Name Ar </span>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group row">
-                                                            <div class="col-md-4">
-                                                                <span>Email</span>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <input type="email" id="email-id" class="form-control" name="email-id" placeholder="Email">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group row">
-                                                            <div class="col-md-4">
-                                                                <span>Mobile</span>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <input type="number" id="contact-info" class="form-control" name="contact" placeholder="Mobile">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group row">
-                                                            <div class="col-md-4">
-                                                                <span>Password</span>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <input type="password" id="password" class="form-control" name="password" placeholder="Password">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-8 offset-md-4">
-                                                        <fieldset class="checkbox">
-                                                            <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                <input type="checkbox">
-                                                                <span class="vs-checkbox">
-                                                                    <span class="vs-checkbox--check">
-                                                                        <i class="vs-icon feather icon-check"></i>
-                                                                    </span>
-                                                                </span>
-                                                                <span class="">Remember me</span>
-                                                            </div>
-                                                        </fieldset>
-                                                    </div>
-                                                    <div class="col-md-8 offset-md-4">
-                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
-                                                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
-                                                    </div>
+                                                    <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                    <div class="col-md-8">
+                                                        <input  [(ngModel)]="myitems.nameAr"   type="text" class="form-control"    ngModel  name="nameAr" #nameArabic="ngModel"  required  minlength="2" placeholder="Item Name Ar">
+                                                        <span   class="error-block"  *ngIf="!AddingItems2.controls.nameAr.valid && AddingItems2.controls.nameAr.touched">
+
+                                                        <span  *ngIf="AddingItems2.controls.nameAr.errors?.required"> Enter Item Name in Arabic </span>
+                                                        <span  *ngIf="nameArabic.errors?.minlength">  Mini Length is 2 letters </span>
+                                                      </span>
+                                                      </div>
                                                 </div>
                                             </div>
-                                        </form>
+
+
+
+                                                 <!-- nameEn -->
+                                            <div class="col-12">
+                                              <div class="form-group row">
+                                                  <div class="col-md-4">
+                                                      <span>Item nameEn </span>
+                                                  </div>
+                                                  <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                  <div class="col-md-8">
+                                                      <input   [(ngModel)]="myitems.nameEn"   type="text" class="form-control"    ngModel  name="nameEn" #nameEnglish="ngModel"  required  minlength="2" placeholder="Item name En">
+                                                      <span   class="error-block"  *ngIf="!AddingItems2.controls.nameAr.valid && AddingItems2.controls.nameEn.touched">
+
+                                                      <span  *ngIf="AddingItems2.controls.nameEn.errors?.required"> Enter Item Name in English </span>
+                                                      <span  *ngIf="nameEnglish.errors?.minlength">  Mini Length is 2 letters </span>
+                                                    </span>
+                                                    </div>
+                                              </div>
+                                          </div>
+
+
+                                                 <!-- createdBy -->
+                                                 <div class="col-12">
+                                                  <div class="form-group row">
+                                                      <div class="col-md-4">
+                                                          <span>Item createdBy </span>
+                                                      </div>
+                                                      <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                      <div class="col-md-8">
+                                                          <input   [(ngModel)]="myitems.createdBy"   type="text" class="form-control"    ngModel  name="createdBy" #createdBy="ngModel"  required  minlength="2" placeholder="createdBy">
+                                                          <span   class="error-block"  *ngIf="!AddingItems2.controls.createdBy.valid && AddingItems2.controls.createdBy.touched">
+
+                                                          <span  *ngIf="AddingItems2.controls.createdBy.errors?.required"> Enter Item created By </span>
+                                                          <span  *ngIf="createdBy.errors?.minlength">  Mini Length is 2 letters </span>
+                                                        </span>
+                                                        </div>
+                                                  </div>
+                                              </div>
+
+
+
+                                                <!-- Unit Id  -->
+                                                <div class="col-12">
+                                                  <div class="form-group row">
+                                                      <div class="col-md-4">
+                                                          <span>Item unitId </span>
+                                                      </div>
+                                                      <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                      <div class="col-md-8">
+                                                          <!-- <input   hidden  [(ngModel)]="myitems.unitId"   type="number" class="form-control"    ngModel  name="unitId" #unitId="ngModel"  required   placeholder="unitId"> -->
+
+                                                          <span   class="error-block"  >
+
+                                                          <!-- <span  *ngIf="AddingItems2.controls.unitId.errors?.required"> Enter Item unitId  </span> -->
+                                                          <!-- <span  *ngIf="unitId.errors?.Mini">  Mini Length is 2 letters </span> -->
+                                                        </span>
+
+                                                                <select class="form-control"   #unitId="ngModel"   ngModel  name="unitId" required>
+
+                                                                  <option value="">Select</option>
+                                                                  <option
+
+                                                                  *ngFor="let myunit of units"   value="{{myunit.unitId}}"  >{{myunit.unitNameAr}} -<span> {{myunit.unitId}}</span>
+
+                                                                  </option>
+
+
+
+                                                                </select>
+
+                                                                <span   class="error-block"  *ngIf="!AddingItems2.controls.unitId.valid && AddingItems2.controls.unitId.touched">
+
+                                                                  <span  *ngIf="AddingItems2.controls.unitId.errors?.required"> plz select Unit if item  </span>
+
+                                                                </span>
+
+
+
+
+                                                        </div>
+                                                  </div>
+                                              </div>
+
+
+                                               <!--  Add Image -->
+
+
+
+                                                      <!-- Add Image  -->
+                                                      <div class="col-12">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4">
+                                                                <span>Adding Image</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input   (change)="onFileSelected($event)"   type="file" accept="image/*" class="form-control"   #image="ngModel" ngModel name="image"  >
+                                                                 <!-- <input  (click)="onUpload(AddingItems2)" type="button"  value="Upload"> -->
+                                                               
+                                                                <span   class="error-block"  *ngIf="!AddingItems2.controls.image.valid && AddingItems2.controls.image.touched">
+                                                                <span  *ngIf="image.errors?.required"> Select Image plz</span>
+                                                               <!-- <span  *ngIf="myPhoto.errors?.minlength">  Mini Length is 2 letters </span> -->
+                                                              </span>
+
+                                                              
+                                                             
+                                                            
+                                                              </div>
+
+                                                              <div class="col-md-4">
+                                                                <img id="image" class="img-fluid rounded border bg-light" [src]="urlImage"  style="height: 200px;width: 200px;" />
+                                                            </div>
+
+
+                                                            
+                                                        </div>
+                                                    </div>
+
+
+                                            <div   class="col-md-8 offset-md-4"   >
+
+                                                <button  name="sub"  [disabled]="!AddingItems2.valid"  type="submit"  class="btn btn-primary mr-1 mb-1">  {{formSate==1 ? 'Add' : 'Edit'}}  </button>
+                                                <button type="reset" class="btn btn-outline-warning mr-1 mb-1"  (click)="OnClear()">Reset</button>
+                                                <button type="button"  class="btn btn-primary mr-1 mb-1"
+                                                (click)="onBack()">Back</button>
+
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+                                     </form>
+
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+
+<!-- ------------------------------------------------------------------------------------------ -->
+<div class="col-md-6 col-12">
+  <div class="card">
+      <div class="card-header">
+          <h4 class="card-title">اضافه الأصناف</h4>
+      </div>
+      <div class="card-content">
+          <div class="card-body">
+
+
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- ------------------------------------------------------------------------------------------------ -->
+
+
+
+
                         <div class="col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header">
@@ -117,7 +249,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form form-horizontal">
+                                        <form     class="form form-horizontal">
                                             <div class="form-body">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -207,6 +339,15 @@
                     </div>
                 </section>
                 <!-- // Basic Horizontal form layout section end -->
+
+
+
+
+
+
+
+
+
 
                 <!-- Basic Vertical form layout section start -->
                 <section id="basic-vertical-layouts">

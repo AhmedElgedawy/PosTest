@@ -1,0 +1,12 @@
+input.ng-invalid.ng-touched
+{
+    border: 1px solid red;
+}
+
+
+.upload{
+  font-weight:bold;
+  color:#28a745;
+  margin-left: 15px;
+  line-height: 36px;
+}

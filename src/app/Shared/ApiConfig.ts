@@ -11,4 +11,5 @@ export class ApiConfig
     static ItemApiEndPoint="/Items";
     static SlidersApiEndPoint="/api/Sliders";
     static CategoriesApiEndPoint="/api/Categories";
+    static UnitsApiEndPoint="/Units";
 }

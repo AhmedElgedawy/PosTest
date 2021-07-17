@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IItems } from './Models';
+import { ICustomers, IItems, IUnits } from './Models';
 import {ApiConfig} from "./ApiConfig" ;
-import {HttpClient} from "@angular/common/http" ;
+import {HttpClient, HttpHeaders} from "@angular/common/http" ;
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -9,7 +9,17 @@ import {Observable} from "rxjs";
 })
 export class ItemService {
 
+  myItems:Array<IItems>=[];
+
   constructor(private http:HttpClient) { }
+
+
+  headers = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    withCredentials: true,
+  };
 
   // GetAllItems():Array<any>
   // {
@@ -25,13 +35,44 @@ export class ItemService {
   //    ];
   // }
 
+  GetById(id:any)
+  {
+   console.log(this.myItems);
+      console.log(id);
+      let items:IItems={
+          nameEn:"",
+          nameAr:"",
+          unitId:0,
+          createdBy:""
+          // ,
+          // unitNameAr:""
 
+      }
+      for(let i=0;i<this.myItems.length;i++)
+      {
+          if(this.myItems[i].itemId===parseInt(id))
+          {
+              return this.myItems[i];
+          }
+      }
+      return items;
+  }
 
 
   GetAllItems():Observable<Array<IItems>>
   {
 
       return this.http.get<Array<IItems>>(ApiConfig.ServerUrl+ApiConfig.ItemApiEndPoint+"/GetAllItems");
+
+    // return this.http.get<Array<IItems>>("http://salestwo-001-site1.btempurl.com/Items/GetAllItems");
+
+  }
+
+
+  GetAllUnits():Observable<Array<IUnits>>
+  {
+
+      return this.http.get<Array<IUnits>>(ApiConfig.ServerUrl+ApiConfig.UnitsApiEndPoint+"/GetAllUnits");
 
     // return this.http.get<Array<IItems>>("http://salestwo-001-site1.btempurl.com/Items/GetAllItems");
 
@@ -51,4 +92,105 @@ export class ItemService {
       return this.http.get<IItems>("http://salestwo-001-site1.btempurl.com/Items/GetItemById?id="+id);
   }
 
+
+
+  DeleteItemById(ItemId:number) {
+
+alert();
+  return this.http.post('http://salestwo-001-site1.btempurl.com/Items/DeleteItem?ItemId=' +ItemId , null , {});
+  }
+
+
+
+
+  // AddItem(item:IItems)
+  // {
+  //  const headers = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  // })
+  //  }
+  //   const body=JSON.stringify(item);
+  //    console.log(body);
+  //    alert(body);
+  //   // return this.http.post('http://salestwo-001-site1.btempurl.com/Items/AddItem', body,{'headers':headers})
+
+  //  return this.http.post<any>('http://salestwo-001-site1.btempurl.com/Items/AddItem', body).subscribe(data => {
+  //     // this.postId = data.id;
+  //     console.log(data)
+
+  // })
+
+  // }
+
+
+
+
+
+
+  AddItem(item:IItems): Observable<IItems> {
+    
+      const headers = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json' })
+       };
+
+
+        return this.http.post<IItems>('https://localhost:44330/Items/AddItem',
+        JSON.stringify(item) ,headers );
+      }
+
+
+      AddItem2(item:any): Observable<any> {
+    
+        const headers = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json' })
+         };
+  
+  
+          return this.http.post<any>('https://localhost:44330/Items/AddItem',
+          item,headers );
+        }
+
+
+
+
+
+    AddActor(formData: FormData) {
+      alert();
+      const headers = new HttpHeaders().append('Content-Disposition', 'multipart/form-data');
+
+
+
+
+      return this.http.post('https://localhost:44330/Items/AddItem', formData, { withCredentials: true });
+    }
+
+
+
+ AddCustomer(item:ICustomers): Observable<ICustomers> {
+
+
+
+
+  const headers = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json' })
+   };
+
+
+    return this.http.post<ICustomers>('http://salestwo-001-site1.btempurl.com/Customer/AddCustomer',
+    JSON.stringify(item) ,headers );
+  }
+
+
+
+
+
 }
+
+
+
+
+

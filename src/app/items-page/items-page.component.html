@@ -34,7 +34,7 @@
             </div>
             <div class="content-body">
                 <!-- Data list view starts -->
-                <section id="data-list-view" class="data-list-view-header">
+                <section  class="data-list-view-header">
                     <div class="action-btns d-none">
                         <div class="btn-dropdown mr-1 mb-1">
                             <div class="btn-group dropdown actions-dropodown">
@@ -42,7 +42,7 @@
                                     Actions
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Delete</a>
+                                    <a class="dropdown-item"  routerLink="/Admin/addItem/0"><i class="feather icon-trash"></i>Add New Item</a>
                                     <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
                                     <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
                                     <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
@@ -50,6 +50,11 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
+
 
                     <!-- DataTable starts -->
                     <div class="table-responsive">
@@ -66,16 +71,17 @@
                                     <th>ORDER STATUS</th>
                                     <th>PRICE</th>
                                     <th>ACTION</th>
+                          
                                 </tr>
                             </thead>
                             <tbody >
 
-                                <tr  *ngFor="let item of items"   routerLink="/Admin/itemsDetails/{{item.itemId}}"    >
+                                <tr  *ngFor="let item of items"     >
                                     <td></td>
                                     <td class="product-img"><img   [src]="item.image"   style="width: 100px;height: 100px;"  alt="Img placeholder">
                                     </td>
                                     <td class="product-name">{{item.itemId}}</td>
-                                    <td class="product-name">{{item.nameAr}}</td>
+                                    <td   class="product-name">{{item.nameEn}}       </td>
 
 
                                     <td class="product-name"   > {{item.unit.unitNameAr}}
@@ -84,7 +90,7 @@
                                       </ul> -->
                                     </td>
 
-                                    <td class="product-category">Computers</td>
+                                    <td class="product-category">{{item.nameEn}}</td>
                                     <td>
                                         <div class="progress progress-bar-success">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="40" aria-valuemax="100" style="width:97%"></div>
@@ -99,9 +105,16 @@
                                     </td>
                                     <td class="product-price">$69.99</td>
                                     <td class="product-action">
-                                        <span class="action-edit"><i class="feather icon-edit"></i></span>
-                                        <span class="action-delete"><i class="feather icon-trash"></i></span>
-                                    </td>
+                                        <span class="action-edit add-new-data"  (click)="OnEdit(item.itemId)"     > <i      class="feather icon-edit"></i></span>
+                                        <span class="action-edit add-new-data"   routerLink="/Admin/addItem/{{item.itemId}}"     > Edit  </span>
+
+
+                                        <span class="action-delete"  (click)="OnDelete(item.itemId)" >  <i   class="feather icon-trash"> </i></span>
+                                    
+                                            
+                                      </td>
+
+                                     
                                 </tr>
 
 
@@ -128,39 +141,150 @@
                             </div>
                             <div class="data-items pb-3">
                                 <div class="data-fields px-2 mt-3">
-                                    <div class="row">
-                                        <div class="col-sm-12 data-field-col">
-                                            <label for="data-name">Name</label>
-                                            <input type="text" class="form-control" id="data-name">
+
+
+                                  <form  class="form form-horizontal"  #AddingItems2="ngForm" (ngSubmit) ="SaveDate(AddingItems2)">
+                                    <div class="form-body">
+                                      <div class="row">
+
+
+                                            <!-- nameAr -->
+                                          <div class="col-12">
+                                              <div class="form-group row">
+                                                  <div class="col-md-4">
+                                                      <span>Item Name Ar </span>
+                                                  </div>
+                                                  <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                  <div class="col-md-8">
+                                                      <input  [(ngModel)]="myitems.nameAr"   type="text" class="form-control"    ngModel  name="nameAr" #nameArabic="ngModel"  required  minlength="2" placeholder="Item Name Ar">
+                                                      <span   class="error-block"  *ngIf="!AddingItems2.controls.nameAr.valid && AddingItems2.controls.nameAr.touched">
+
+                                                      <span  *ngIf="AddingItems2.controls.nameAr.errors?.required"> Enter Item Name in Arabic </span>
+                                                      <span  *ngIf="nameArabic.errors?.minlength">  Mini Length is 2 letters </span>
+                                                    </span>
+                                                    </div>
+                                              </div>
+                                          </div>
+
+
+
+                                               <!-- nameEn -->
+                                          <div class="col-12">
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <span>Item nameEn </span>
+                                                </div>
+                                                <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                <div class="col-md-8">
+                                                    <input   [(ngModel)]="myitems.nameEn"   type="text" class="form-control"    ngModel  name="nameEn" #nameEnglish="ngModel"  required  minlength="2" placeholder="Item name En">
+                                                    <span   class="error-block"  *ngIf="!AddingItems2.controls.nameAr.valid && AddingItems2.controls.nameEn.touched">
+
+                                                    <span  *ngIf="AddingItems2.controls.nameEn.errors?.required"> Enter Item Name in English </span>
+                                                    <span  *ngIf="nameEnglish.errors?.minlength">  Mini Length is 2 letters </span>
+                                                  </span>
+                                                  </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-12 data-field-col">
-                                            <label for="data-category"> Category </label>
-                                            <select class="form-control" id="data-category">
-                                                <option>Audio</option>
-                                                <option>Computers</option>
-                                                <option>Fitness</option>
-                                                <option>Appliance</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-12 data-field-col">
-                                            <label for="data-status">Order Status</label>
-                                            <select class="form-control" id="data-status">
-                                                <option>Pending</option>
-                                                <option>Canceled</option>
-                                                <option>Delivered</option>
-                                                <option>On Hold</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-12 data-field-col">
-                                            <label for="data-price">Price</label>
-                                            <input type="text" class="form-control" id="data-price">
-                                        </div>
-                                        <div class="col-sm-12 data-field-col data-list-upload">
-                                            <form action="#" class="dropzone dropzone-area" id="dataListUpload">
-                                                <div class="dz-message">Upload Image</div>
-                                            </form>
-                                        </div>
-                                    </div>
+
+
+                                               <!-- createdBy -->
+                                               <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Item createdBy </span>
+                                                    </div>
+                                                    <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                    <div class="col-md-8">
+                                                        <input   [(ngModel)]="myitems.createdBy"   type="text" class="form-control"    ngModel  name="createdBy" #createdBy="ngModel"  required  minlength="2" placeholder="createdBy">
+                                                        <span   class="error-block"  *ngIf="!AddingItems2.controls.createdBy.valid && AddingItems2.controls.createdBy.touched">
+
+                                                        <span  *ngIf="AddingItems2.controls.createdBy.errors?.required"> Enter Item created By </span>
+                                                        <span  *ngIf="createdBy.errors?.minlength">  Mini Length is 2 letters </span>
+                                                      </span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+
+
+                                              <!-- Unit Id  -->
+                                              <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Item unitId </span>
+                                                    </div>
+                                                    <!-- [(ngModel)]="myitems.nameAr"   test-->
+                                                    <!-- <div class="col-md-8"> -->
+                                                        <!-- <input   [(ngModel)]="myitems.unitId"   type="number" class="form-control"    ngModel  name="unitId" #unitId="ngModel"  required   placeholder="unitId"> -->
+                                                        <!-- <span   class="error-block"  *ngIf="!AddingItems2.controls.unitId.valid && AddingItems2.controls.unitId.touched"> -->
+
+                                                        <!-- <span  *ngIf="AddingItems2.controls.unitId.errors?.required"> Enter Item unitId  </span> -->
+                                                        <!-- <span  *ngIf="unitId.errors?.Mini">  Mini Length is 2 letters </span> -->
+                                                      <!-- </span>
+                                                      </div> -->
+                                                      <div class="col-md-8">
+                                                            <select class="form-control"  #unitId="ngModel"   ngModel  name="unitId" required>
+
+                                                                  <option value="">Select</option>
+                                                                  <option
+
+                                                                  *ngFor="let myunit of units"   value="{{myunit.unitId}}"  >{{myunit.unitNameAr}} -<span> {{myunit.unitId}}</span>
+
+                                                                  </option>
+
+
+
+                                                                </select>
+
+                                                                <span   class="error-block"  *ngIf="!AddingItems2.controls.unitId.valid && AddingItems2.controls.unitId.touched">
+
+                                                                  <span  *ngIf="AddingItems2.controls.unitId.errors?.required"> plz select Unit if item  </span>
+
+                                                                </span>
+                                                              </div>
+
+
+
+                                                </div>
+                                            </div>
+
+
+                                             <!--  Add Image -->
+
+
+
+                                                    <!-- Add Image  -->
+                                                    <div class="col-12">
+                                                      <div class="form-group row">
+                                                          <div class="col-md-4">
+                                                              <span>Adding Image</span>
+                                                          </div>
+                                                          <div class="col-md-8">
+                                                              <input type="file" accept="image/*" class="form-control"   #image="ngModel" ngModel name="image"  required>
+                                                              <span   class="error-block"  *ngIf="!AddingItems2.controls.image.valid && AddingItems2.controls.image.touched">
+                                                              <span  *ngIf="image.errors?.required"> Select Image plz</span>
+                                                             <!-- <span  *ngIf="myPhoto.errors?.minlength">  Mini Length is 2 letters </span> -->
+                                                            </span>
+                                                            </div>
+                                                      </div>
+                                                  </div>
+
+
+                                          <div   class="col-md-8 offset-md-4"   >
+
+                                              <button  name="sub"  [disabled]="!AddingItems2.valid"  type="submit"  class="btn btn-primary mr-1 mb-1">  {{formSate==1 ? 'Add' : 'Edit'}} </button>
+                                              <button type="reset" class="btn btn-outline-warning mr-1 mb-1"  (click)="OnClear()">Reset</button>
+
+                                          </div>
+
+
+
+
+                                      </div>
+                                  </div>
+                                   </form>
+
+
                                 </div>
                             </div>
                             <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
@@ -174,6 +298,14 @@
                         </div>
                     </div>
                     <!-- add new sidebar ends -->
+
+
+
+
+
+
+
+
                 </section>
                 <!-- Data list view end -->
 

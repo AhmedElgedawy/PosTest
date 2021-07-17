@@ -9,8 +9,9 @@ const routes: Routes = [
   {"path":"Admin/home",component:HomePageComponent},
   {"path":"Admin/items",component:ItemsPageComponent},
   {"path":"Admin/itemsDetails/:id",component:ItemDetailsPageComponent},
-  {"path":"Admin/addItem",component:AddItemPageComponent},
-  {"path":"",redirectTo:"Admin/home",pathMatch:"full"}
+  {"path":"Admin/addItem/:id",component:AddItemPageComponent},
+  {"path":"",redirectTo:"Admin/home",pathMatch:"full"},
+  {"path":"",component:HomePageComponent}
 ];
 
 @NgModule({
